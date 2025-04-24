@@ -76,6 +76,17 @@ class Progress;
 #define FMT_RUNTIME(format_string) format_string
 #endif
 
+// Support fmt 9.x which is used a.o. in ubuntu noble (24.04) repositories
+// Note, discussed in: https://github.com/The-OpenROAD-Project/OpenROAD/pull/3911
+#if FMT_VERSION >= 90000 && FMT_VERSION < 100000
+  #define FMT9_OSTREAM_FORMATTER(_class)                                                  \
+    template <typename T>                                                                 \
+    struct fmt::formatter<T, std::enable_if_t<std::is_base_of<_class, T>::value, char>> : \
+      fmt::ostream_formatter {};
+#else
+  #define FMT9_OSTREAM_FORMATTER(_class) ()
+#endif
+
 enum ToolId
 {
   FOREACH_TOOL(GENERATE_ENUM)

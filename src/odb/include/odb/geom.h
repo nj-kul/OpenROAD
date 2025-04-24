@@ -1019,3 +1019,5 @@ using utl::format_as;
 #endif
 
 }  // namespace odb
+
+FMT9_OSTREAM_FORMATTER(odb::Rect)

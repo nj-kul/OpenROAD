@@ -48,3 +48,5 @@ class DebugScopedTimer : public Timer
 std::ostream& operator<<(std::ostream& os, const Timer& t);
 
 }  // namespace utl
+
+FMT9_OSTREAM_FORMATTER(utl::Timer)
